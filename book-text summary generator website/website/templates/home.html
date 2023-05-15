@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1 align="center">Please upload a pdf of text or enter a book title</h1>
+<form method="POST">
+    <textarea name="bookTitle" id="bookTitle" class="form-control", rows="1"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Generate Summary</button>
+    </div>
+</form>
+<br />
+<h2 align="center">Here are your summaries</h2>
+<ul class="list-group list-group-flush" id="summaries">
+    {% for summary in user.summaries %}
+    <li class="'list-group-item">{{ summary.data }}
+        <button type="button", class="close", onClick="deleteSummary({{ summary.id }})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
